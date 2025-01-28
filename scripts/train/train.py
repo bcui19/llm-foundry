@@ -77,7 +77,7 @@ if __name__ == '__main__':
             seed=1,
             enable_prefix_caching=False,
             max_model_len=4096,
-            use_multiprocessing=True,
+            use_multiprocessing=False,
         )
         print ("vllm engines are: ", vllm_engines)
 
