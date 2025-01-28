@@ -240,10 +240,10 @@ def train(cfg: DictConfig) -> Trainer:
             train_cfg.python_log_level.upper(),
         )  # Streaming module
     
-    num_vllm_engines = train_cfg.variables.num_vllm_engines
-    tensor_parallel_size = train_cfg.variables.tensor_parallel_size
+    num_vllm_engines = train_cfg.variables['num_vllm_engines']
+    tensor_parallel_size = train_cfg.variables['tensor_parallel_size']
     vllm_sync_backend = 'nccl'
-    vllm_model_name = train_cfg.model.pretrained_model_name_or_path
+    vllm_model_name = train_cfg.model['pretrained_model_name_or_path']
 
     log.info("Before dist init")
 
