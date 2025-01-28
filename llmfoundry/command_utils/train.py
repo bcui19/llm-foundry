@@ -60,6 +60,7 @@ from llmfoundry.utils.exceptions import (
     TrainDataLoaderLocation,
 )
 from llmfoundry.utils.registry_utils import import_file
+from llmfoundry.command_utils.vllm_utils import create_vllm_engines
 
 log = logging.getLogger(__name__)
 
@@ -238,6 +239,11 @@ def train(cfg: DictConfig) -> Trainer:
         logging.getLogger('streaming').setLevel(
             train_cfg.python_log_level.upper(),
         )  # Streaming module
+    
+    num_vllm_engines = train_cfg.variables.num_vllm_engines
+    tensor_parallel_size = train_cfg.variables.tensor_parallel_size
+    vllm_sync_backend = 'nccl'
+    vllm_model_name = train_cfg.model.pretrained_model_name_or_path
 
     _initialize_dist_with_barrier(dist_timeout=train_cfg.dist_timeout)
 
@@ -596,6 +602,21 @@ def train(cfg: DictConfig) -> Trainer:
         accumulate_train_batch_on_tokens=train_cfg.
         accumulate_train_batch_on_tokens,
     )
+
+    print ("After trainer")
+
+    vllm_engines = create_vllm_engines(
+        num_engines=num_vllm_engines,
+        tensor_parallel_size=tensor_parallel_size,
+        enforce_eager=True,
+        pretrain=vllm_model_name,
+        revision=None,
+        seed=1,
+        enable_prefix_caching=False,
+        max_model_len=4096,
+    )
+
+    print ("after vllm engines")
 
     _sort_callbacks(trainer)
 
