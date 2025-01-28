@@ -245,6 +245,21 @@ def train(cfg: DictConfig) -> Trainer:
     vllm_sync_backend = 'nccl'
     vllm_model_name = train_cfg.model.pretrained_model_name_or_path
 
+    print ("Before dist init")
+
+    vllm_engines = create_vllm_engines(
+        num_engines=num_vllm_engines,
+        tensor_parallel_size=tensor_parallel_size,
+        enforce_eager=True,
+        pretrain=vllm_model_name,
+        revision=None,
+        seed=1,
+        enable_prefix_caching=False,
+        max_model_len=4096,
+    )
+
+    print ("after vllm engines")
+
     _initialize_dist_with_barrier(dist_timeout=train_cfg.dist_timeout)
 
     # Filter deprecation warning from torch internal usage
@@ -602,21 +617,6 @@ def train(cfg: DictConfig) -> Trainer:
         accumulate_train_batch_on_tokens=train_cfg.
         accumulate_train_batch_on_tokens,
     )
-
-    print ("After trainer")
-
-    vllm_engines = create_vllm_engines(
-        num_engines=num_vllm_engines,
-        tensor_parallel_size=tensor_parallel_size,
-        enforce_eager=True,
-        pretrain=vllm_model_name,
-        revision=None,
-        seed=1,
-        enable_prefix_caching=False,
-        max_model_len=4096,
-    )
-
-    print ("after vllm engines")
 
     _sort_callbacks(trainer)
 
