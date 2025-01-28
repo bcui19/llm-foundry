@@ -245,7 +245,7 @@ def train(cfg: DictConfig) -> Trainer:
     vllm_sync_backend = 'nccl'
     vllm_model_name = train_cfg.model.pretrained_model_name_or_path
 
-    print ("Before dist init")
+    log.info("Before dist init")
 
     if os.getenv('NODE_RANK', None) == '0' and os.getenv('LOCAL_RANK', None) == '0':
 
@@ -260,7 +260,7 @@ def train(cfg: DictConfig) -> Trainer:
             max_model_len=4096,
         )
 
-    print ("after vllm engines")
+    log.info("after vllm engines")
 
     _initialize_dist_with_barrier(dist_timeout=train_cfg.dist_timeout)
 
