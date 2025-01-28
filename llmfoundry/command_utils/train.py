@@ -259,6 +259,7 @@ def train(cfg: DictConfig) -> Trainer:
             enable_prefix_caching=False,
             max_model_len=4096,
         )
+        print ("vllm engines are: ", vllm_engines)
 
     log.info("after vllm engines")
 
