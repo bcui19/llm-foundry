@@ -16,7 +16,7 @@ from kubernetes import client, config
 from llmfoundry.command_utils import train_from_yaml
 from omegaconf import OmegaConf as om
 
-from vllm_utils import create_vllm_engines, init_process_group
+# from vllm_utils import create_vllm_engines, init_process_group
 from compose_rl.utils import print_debug_info
 from zqm_node import create_node
 
