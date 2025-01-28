@@ -247,21 +247,21 @@ def train(cfg: DictConfig) -> Trainer:
 
     log.info("Before dist init")
 
-    if os.getenv('NODE_RANK', None) == '0' and os.getenv('LOCAL_RANK', None) == '0':
+    # if os.getenv('NODE_RANK', None) == '0' and os.getenv('LOCAL_RANK', None) == '0':
 
-        vllm_engines = create_vllm_engines(
-            num_engines=num_vllm_engines,
-            tensor_parallel_size=tensor_parallel_size,
-            enforce_eager=True,
-            pretrain=vllm_model_name,
-            revision=None,
-            seed=1,
-            enable_prefix_caching=False,
-            max_model_len=4096,
-        )
-        print ("vllm engines are: ", vllm_engines)
+    #     vllm_engines = create_vllm_engines(
+    #         num_engines=num_vllm_engines,
+    #         tensor_parallel_size=tensor_parallel_size,
+    #         enforce_eager=True,
+    #         pretrain=vllm_model_name,
+    #         revision=None,
+    #         seed=1,
+    #         enable_prefix_caching=False,
+    #         max_model_len=4096,
+    #     )
+    #     print ("vllm engines are: ", vllm_engines)
 
-    log.info("after vllm engines")
+    # log.info("after vllm engines")
 
     _initialize_dist_with_barrier(dist_timeout=train_cfg.dist_timeout)
 
