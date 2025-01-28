@@ -209,6 +209,10 @@ def _sort_callbacks(trainer: Trainer):
 
 
 def train(cfg: DictConfig) -> Trainer:
+    from compose_rl.utils import print_debug_info
+    print ("IN LLM FOUNDRY DEPENDENCIES ARE: ")
+    print_debug_info()
+    print ("AFTER PRINT DEBUG INFO")
     code_paths = cfg.get('code_paths', [])
     # Import any user provided code
     for code_path in code_paths:
