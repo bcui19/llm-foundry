@@ -241,7 +241,7 @@ def train(cfg: DictConfig) -> Trainer:
         )  # Streaming module
     
     num_vllm_engines = train_cfg.variables['num_vllm_engines']
-    tensor_parallel_size = train_cfg.variables['tensor_parallel_size']
+    tensor_parallel_size = train_cfg.variables['vllm_tensor_parallel_size']
     vllm_sync_backend = 'nccl'
     vllm_model_name = train_cfg.model['pretrained_model_name_or_path']
 
