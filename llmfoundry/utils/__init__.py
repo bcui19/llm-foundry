@@ -62,7 +62,7 @@ from llmfoundry.utils.warnings import (
     experimental_class,
     experimental_function,
 )
-from llmfoundry.utils.vllm_utils import create_vllm_engines, init_process_group
+# from llmfoundry.utils.vllm_utils import create_vllm_engines, init_process_group
 
 config_transforms.register(
     'update_batch_size_info',
@@ -114,6 +114,6 @@ __all__ = [
     'experimental_function',
     'experimental_class',
     'CROSS_ENTROPY_IGNORE_INDEX',
-    'create_vllm_engines', 
-    'init_process_group',
+    # 'create_vllm_engines', 
+    # 'init_process_group',
 ]
