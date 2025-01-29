@@ -15,7 +15,7 @@ from transformers import (
 )
 
 # from vllm_utils import create_vllm_engines, init_process_group
-from llmfoundry.utils import create_vllm_engines, init_process_group
+from llmfoundry.utils.vllm_utils import create_vllm_engines, init_process_group
 # from compose_rl.utils import print_debug_info
 # I think there's an import here that messes w/ ray...
 # import
