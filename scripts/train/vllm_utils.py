@@ -165,8 +165,8 @@ class LLMRayActor:
         assert self.__version__ >= '0.4.1', 'OpenRLHF only supports vLLM >= 0.4.1'
 
         self.use_gpu_executor = kwargs['tensor_parallel_size'] == 1
-        # print ("cuda is available in actor: ", torch.cuda.is_available())
-        # print ("device counts is: ", torch.cuda.device_count())
+        print ("cuda is available in actor: ", torch.cuda.is_available())
+        print ("device counts is: ", torch.cuda.device_count())
         print ("cuda visible devices in actor is: ", os.getenv('CUDA_VISIBLE_DEVICES', None))
         print('kwargs are: ', kwargs)
 
