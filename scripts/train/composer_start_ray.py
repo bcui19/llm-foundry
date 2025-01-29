@@ -188,7 +188,7 @@ def start_ray_nodes():
         ray.init(
             runtime_env={
                 "pip": [
-                    "git+https://github.com/bcui19/llm-foundry.git@dking_inf_debug#egg=llmfoundry
+                    "git+https://github.com/bcui19/llm-foundry.git@dking_inf_debug#egg=llmfoundry"
                 ]
             }
         )
