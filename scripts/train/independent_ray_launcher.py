@@ -91,7 +91,7 @@ if __name__ == "__main__":
         print("in independent_ray_launcher.py")
         # print_debug_info()
 
-        vllm_tensor_parallel_size = 2
+        vllm_tensor_parallel_size = 1
         vllm_num_engines = 8
         vllm_sync_backend = 'nccl'
         model_name_or_path = 'allenai/Llama-3.1-Tulu-3-8B-DPO'
