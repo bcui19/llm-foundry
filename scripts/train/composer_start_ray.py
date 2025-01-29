@@ -185,7 +185,13 @@ def start_ray_nodes():
         broadcast_string(ip, src_rank=0)
         # node.send(ip)
 
-        ray.init()
+        ray.init(
+            runtime_env={
+                "pip": [
+                    "git+https://github.com/bcui19/llm-foundry.git@dking_inf_debug#egg=llmfoundry
+                ]
+            }
+        )
         # Wait for all ray clusters to start
         dist.barrier()
 
