@@ -294,6 +294,8 @@ def create_vllm_engines(
                 print ("Placement group failed")
                 print ("error is: ", e)
                 assert False
+            
+            pg.wait()
 
             scheduling_strategy = PlacementGroupSchedulingStrategy(
                 placement_group=pg,
