@@ -54,6 +54,7 @@ def broadcast_to_vllm(model, vllm_engines):
     for name, param in model.named_parameters():
         count += 1
         shape = param.shape
+        print ("updating name to: ", name, param.shape)
         refs = [
             engine.update_weight.remote(
                 name,
